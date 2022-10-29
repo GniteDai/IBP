@@ -1,14 +1,13 @@
 import React from "react";
-
 export default class Header extends React.Component {
   constructor(props) {
     // 初始化
     super(props);
     this.state = {
-      currentLanguage: { code: 'zh-tw', name: '中文' },
+      currentLanguage: 'zh',
       languageList: [
-        { code: 'zh-tw', name: '中文' },
-        { code: 'en-us', name: 'English' },
+        { code: 'zh', name: '中文' },
+        { code: 'en', name: 'English' },
       ],
       account: {
         userId: 4,
@@ -18,7 +17,7 @@ export default class Header extends React.Component {
   }
 
   handleLanguage = (language) => {
-    this.setState({currentLanguage: language})
+    this.setState({currentLanguage: language.code})
   }
 
   render() {
@@ -27,7 +26,7 @@ export default class Header extends React.Component {
       <div className="header">
         <span className="title">Cherri Chat</span>
         <div className="language-area">
-          { languageList.map(language => <div className={currentLanguage && currentLanguage.code === language.code ? 'language-item selected' : 'language-item'} key={language.code} onClick={() => this.handleLanguage(language)}>{ language.name }</div>) }
+          { languageList.map(language => <div className={currentLanguage === language.code ? 'language-item selected' : 'language-item'} key={language.code} onClick={() => this.handleLanguage(language)}>{ language.name }</div>) }
         </div>
         <div className="account-area">
           <div className="account-logo" />

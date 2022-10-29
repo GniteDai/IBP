@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Translation } from 'react-i18next';
 export default class List extends React.Component {
   constructor(props) {
     // 初始化
@@ -10,7 +10,7 @@ export default class List extends React.Component {
         { userId: 2, userName: '傑克', userDesc: '大家好，我是傑克～' },
         { userId: 3, userName: '傑森', userDesc: '大家好，我是傑森～' },
       ],
-      currentUser: null,
+      currentUser: null
     };
   }
 
@@ -18,11 +18,15 @@ export default class List extends React.Component {
     this.setState({currentUser: item})
   };
 
+  handleGGG = (i18n) => {
+    i18n.changeLanguage('en')
+  }
+  
   render() {
     const { currentUser, list } = this.state;
     return (
       <div className="user-list">
-        <div className="title">好友列表({list.length})</div>
+        <Translation>{(t, {i18n}) => <div className="title" onClick={() => {this.handleGGG(i18n)}}>{t('FriendsList')}({list.length})</div>}</Translation>
         { 
           list.map(item => {
             return (
