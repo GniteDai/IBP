@@ -9,20 +9,20 @@ const CherriChat = () => {
     const userList = [
         { userId: 1, userName: '保羅', userDesc: '大家好，我是保羅～', messageList: [
             {id: 0, message: '保羅', fromId: 4},
-            {id: 1, message: '你好, 我是傑西卡', fromId: 4},
+            {id: 1, message: '你好, 我是潔西卡', fromId: 4},
             {id: 2, message: '我喜歡吃的食物有', fromId: 4},
             {id: 3, message: '各種巧克力口味的甜點', fromId: 4},
             {id: 4, message: 'hi 潔西卡', fromId: 1}
         ]},
         { userId: 2, userName: '傑克', userDesc: '大家好，我是傑克～', messageList: [
             {id: 0, message: '傑克', fromId: 4},
-            {id: 1, message: '你好, 我是傑西卡', fromId: 4},
+            {id: 1, message: '你好, 我是潔西卡', fromId: 4},
             {id: 2, message: '我喜歡做的運動為', fromId: 4},
             {id: 3, message: '游泳,跑步', fromId: 4}
         ]},
         { userId: 3, userName: '傑森', userDesc: '大家好，我是傑森～', messageList: [
             {id: 0, message: '傑森', fromId: 4},
-            {id: 1, message: '你好, 我是傑西卡', fromId: 4},
+            {id: 1, message: '你好, 我是潔西卡', fromId: 4},
             {id: 2, message: '我喜歡的動物為', fromId: 4},
             {id: 3, message: '貓,狗', fromId: 4}
         ]}
@@ -37,7 +37,6 @@ const CherriChat = () => {
         {id: 1, createTime: 1667117648, message: '備忘訊息1'},
         {id: 2, createTime: 1666944848, message: '備忘訊息2'}
     ])
-
     const changeCurrrentUser = (item) => {
         if(currentUser && currentUser.userId === item.userId) {
             return setCurrentUser(null)

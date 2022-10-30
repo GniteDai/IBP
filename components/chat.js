@@ -1,7 +1,31 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Image from 'next/image'
 import Note from "./note";
+import Highlighter from "react-highlight-words";
+import Search from './search'
 const Chat = (props) => {
+  const [searchValue, setSearchValue] = useState('')
+  const [matchCount, setMatchCount] = useState(0)
+  const changeSearchValue = (value => {
+    setSearchValue(value)
+    let res = 0
+    if(value !== '') {
+      props.currentUser.messageList.forEach(item => {
+        res += item.message.split(value).length - 1
+      })
+    }
+    setMatchCount(res)
+  })
+  useEffect(() => {
+    let res = 0
+    console.log(searchValue)
+    if(searchValue !== '') {
+      props.currentUser.messageList.forEach(item => {
+        res += item.message.split(searchValue).length - 1
+      })
+    }
+    setMatchCount(res)
+  }, [props.currentUser]);
   return (
     <div className="chat">
       <div className="chat-head">
@@ -19,13 +43,19 @@ const Chat = (props) => {
             </div>
             {props.showNote && <Note noteList={props.noteList} addNoteMessage={props.addNoteMessage} removeNoteMessage={props.removeNoteMessage} />}
           </div>
-          
         </div>
       </div>
+      {props.showSearch && <Search searchValue={searchValue} matchCount={matchCount} changeSearchValue={changeSearchValue} />}
       <div className="chat-content">
         {[...props.currentUser.messageList].reverse().map(item => {
           return (
-            <div className={item.fromId === props.account.userId ? 'self-message':'other-message'} key={`message-${item.id}`}>{item.message}</div>
+            <div className={item.fromId === props.account.userId ? 'self-message':'other-message'} key={`message-${item.id}`}>
+              <Highlighter
+                searchWords={searchValue !== '' ? [searchValue] : []}
+                autoEscape={true}
+                textToHighlight={item.message}
+              />
+            </div>
           )
         })}
       </div>

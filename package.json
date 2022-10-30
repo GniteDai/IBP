@@ -10,6 +10,7 @@
     "next": "latest",
     "next-i18next": "^12.1.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-highlight-words": "^0.18.0"
   }
 }
