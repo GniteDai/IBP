@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Image from 'next/image'
 import dayjs from 'dayjs'
+import { useTranslation } from 'next-i18next';
 const Note = (props) => {
+    const { t } = useTranslation()
     const [newNoteMessage, setNewNoteMessage] = useState('')
     const inputChange = (value) => {
         setNewNoteMessage(value)
@@ -18,8 +20,8 @@ const Note = (props) => {
     <div className="note-modal">
         <div className="modal-content">
             <div className="note-modal-header">
-                <textarea className="input-box" value={newNoteMessage} type="text" rows="4" cols="30" placeholder="輸入訊息..." onChange={(e) => inputChange(e.target.value)} />
-                <div className="add-note" onClick={()=> addBefore()}>新增</div>
+                <textarea className="input-box" value={newNoteMessage} type="text" rows="4" cols="30" placeholder={t('InputPlaceholder')} onChange={(e) => inputChange(e.target.value)} />
+                <div className="add-note" onClick={()=> addBefore()}>{t('Add')}</div>
             </div>
             <div className="note-message-area">
                 {props.noteList.map((item, idx) => { return (

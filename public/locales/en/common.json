@@ -1,3 +1,6 @@
 {
-    "FriendsList": "Friends List"
+    "FriendsList": "Friends List",
+    "MatchMessageCount": " items",
+    "InputPlaceholder": "Message...",
+    "Add": "Add"
 }

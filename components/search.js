@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next';
 const Note = (props) => {
+    const { t } = useTranslation()
     return (
     <div className="search-bar">
-        <input className="input-box" value={props.searchValue} type="text" placeholder="輸入搜尋內容..." onChange={(e) => props.changeSearchValue(e.target.value)} />
-        {props.searchValue !== '' && <div className="match-info">{props.matchCount}則相符訊息</div>}
+        <input className="input-box" value={props.searchValue} type="text" placeholder={t('InputPlaceholder')} onChange={(e) => props.changeSearchValue(e.target.value)} />
+        {props.searchValue !== '' && <div className="match-info">{props.matchCount}{t('MatchMessageCount')}</div>}
         {props.searchValue !== '' &&
             <div className="clear-search-icon" onClick={()=>props.changeSearchValue('')}>
                 <Image src="/images/ic_close1.png" alt="search" width="28" height="28" />

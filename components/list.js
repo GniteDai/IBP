@@ -1,10 +1,11 @@
 import React from "react";
-import { Translation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const List = (props) => {
+  const { t } = useTranslation();
   return (
     <div className="user-list">
-      <Translation>{(t, {i18n}) => <div className="title">{t('FriendsList')}({props.list.length})</div>}</Translation>
+      <div className="title">{t('FriendsList')}({props.list.length})</div>
       { 
         props.list.map(item => {
           return (

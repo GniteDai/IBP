@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import List from "../components/list";
 import Header from '../components/header'
 import Chat from '../components/chat'
 import Image from 'next/image'
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router'
 
 const CherriChat = () => {
+    const router = useRouter()
     const userList = [
         { userId: 1, userName: '保羅', userDesc: '大家好，我是保羅～', messageList: [
             {id: 0, message: '保羅', fromId: 4},
@@ -49,6 +52,8 @@ const CherriChat = () => {
     }
     const changeLanguage = (item) => {
         setLanguage(item.code)
+        const { pathname, asPath, query } = router
+        router.push({ pathname, query }, asPath, { locale: item.code })
     }
     const addNoteMessage = (item => {
         const newId = 0
@@ -65,6 +70,8 @@ const CherriChat = () => {
         res.splice(idx, 1)
         setNoteList(res)
     })
+    const { i18n } = useTranslation();
+    useEffect(()=>{ i18n.changeLanguage(currentLanguage) }, [currentLanguage])
 
     return (
         <div className="cherri-chat-content">
